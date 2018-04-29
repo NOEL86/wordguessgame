@@ -1,10 +1,17 @@
 
-
 #mtitle {font-family: 'Orbitron', sans-serif;
-    text-align: center;
     font-size: 100px;
-    color: rgb(11, 123, 160);
+    color: black;
+    -webkit-text-fill-color: rgb(11, 123, 160);
+    -webkit-text-stroke: 3px;
+    -webkit-text-stroke-color: black;
     margin-bottom: 0;
+    line-height: 1;
+    background-color: rgb(238, 238, 39);
+    border: 2px solid black;
+    text-align: center;
+    padding-bottom: 25px;
+
 }
 
 #paint {font-family: 'Finger Paint', cursive;
@@ -13,6 +20,7 @@
     font-size: 100px;
     z-index: 99;
     margin-top: 0;
+    text-shadow: 5px 5px;
 
 }
 
