@@ -18,12 +18,12 @@
 }
 
 #paint {font-family: 'Finger Paint', cursive;
-    color: rgb(243, 46, 145);
+    color: yellow;
     text-align: center;
     font-size: 80px;
     z-index: 99;
     margin-top: 0;
-    text-shadow: 5px 5px;
+    text-shadow: 5px 5px black;
     transform: rotate(-25deg);
     padding-bottom: 25px;
     margin-right: 150px;
@@ -58,15 +58,21 @@ img {width: 280px;
 
 }
 
-#left {text-align: left;
+.left {text-align: left;
 
 }
 
 #bottom {text-align: left;
     font-family: 'Finger Paint', cursive;
     color: rgb(243, 46, 145);
-    border-top: dashed black 3px;
     margin-left: 300px;
     padding-top: 50px;
+    margin-top: 60px;
+}
+
+#guesses, #lettersGuessed, #emptyMovie, #wins {font-family: 'Times New Roman', Times, serif !important;
+    color: black !important;
+    font-size: 25px !important;
+    
 }
 
