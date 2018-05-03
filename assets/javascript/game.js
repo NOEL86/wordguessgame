@@ -6,8 +6,6 @@
 // display dashes indicating how many letters (ie: HITMAN = ___ ___ );
 // display a hint button******* BONUS
 
-
-
 // Word is chosen by random in an array
 // Player hits keys to guess hidden letters;
 // player is allowed 10 tries to guess word;
@@ -23,42 +21,108 @@
 // Global Variables
 var words = ["beetlejuice", "the princess bride", "flash dance", "ghost busters", "footloose"];
 var wins = 0;
-var losses = 0;
 var guesses = 10;
 var emptyMovie = " ";
-var underScores = [];
+var blanksSucceses = [];
 var splitLetters = [];
 var display = [splitLetters];
-// var userGuess = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
-//     'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's',
-//     't', 'u', 'v', 'w', 'x', 'y', 'z'];
-var lettersGuessed = " ";
+var numBlanks = 0;
+var lettersGuessed = [];
 
 // var remainingLetters = ;
 
-
-window.onload = function beginGame() { //start the game
+function beginGame() { //start the game
     confirm("Want to play Hangman?")
-    document.getElementById("wins").innerHTML = wins; //wins base #
-    document.getElementById("guesses").innerHTML = losses; //guesses base #
-    document.getElementById("lettersGuessed").innerHTML = lettersGuessed;
+
+    // restart game
+    guesses = 10;
+    lettersGuessed = [];
+    blanksSucceses = [];
+
     emptyMovie = words[Math.floor(Math.random() * words.length)]; //pick a random word from the array
     console.log(emptyMovie)
     splitLetters = emptyMovie.split(''); //creates the dashes in the html so the player knows how may letters they are guessing
     console.log(splitLetters)
     console.log("-------")
 
-    for (var i = 0; i < splitLetters.length; i++) {
-        underScores[i] = "_ "; //for loop to determine dashes for letter placeholders
+    console.log(blanksSucceses)
 
+    for (var i = 0; i < splitLetters.length; i++) {
+        blanksSucceses[i] = "_ "; //for loop to determine dashes for letter placeholders
+        console.log(i);
     }
-    console.log(underScores)
+    document.getElementById("emptyMovie").innerHTML = blanksSucceses.join(" ");
+    document.getElementById("wins").innerHTML = wins; //wins base #
+    document.getElementById("lettersGuessed").innerHTML = lettersGuessed;
+    document.getElementById("guesses").innerHTML = guesses; //wins base #
+    console.log(blanksSucceses)
     console.log("-------")
-    // document.getElementById("emptyMovie").innerHTML = document.write("S -> " + myArray.join(" "));
-    document.getElementById("emptyMovie").innerHTML = underScores.join(" ");
-    console.log(underScores)
 }
 
+function checkLetters(letter) { //for loop function to determine if guessed letter is in the word
+    var isLetterInWord = false;
+
+    for (var i = 0; i < emptyMovie.length; i++) { // check words array for correct word and replace empty array with correct letter
+        if (emptyMovie[i] === letter) {
+            isLetterInWord = true;
+            blanksSucceses[i] = letter;
+            console.log(isLetterInWord);
+        }
+    }
+
+    if (isLetterInWord === false) {
+        lettersGuessed.push(letter);
+        guesses--;
+    }
+    console.log(lettersGuessed);
+    document.getElementById("emptyMovie").innerHTML = blanksSucceses.join(" ");
+    document.getElementById("lettersGuessed").innerHTML = lettersGuessed.join(" ");
+    document.getElementById("guesses").innerHTML = guesses; //wins base #
+}
+
+
+function roundComplete() {
+    console.log("Wins: " + "wins" + "Guesses Remaining: " + "guesses")
+    console.log(emptyMovie);
+    console.log("blankSuccesses " + blanksSucceses.join());
+    console.log("blankSuccesses to String " + blanksSucceses.toString());
+    currentSuccesses = blanksSucceses.toString();
+    console.log(currentSuccesses);
+    if (emptyMovie.valueOf() == currentSuccesses.valueOf()) {
+        wins++;
+        alert("You Win");
+        document.getElementById("wins").innerHTML = wins;
+        beginGame();
+    }
+    else if (guesses <= 0) {
+        alert("You Lost!");
+        beginGame();
+    }
+}
+
+window.onload = function startGame() {
+    beginGame();
+}
+
+//play the game
+document.onkeyup = function (event) {
+    var lettersGuessed = String.fromCharCode(event.keyCode).toLowerCase();
+    checkLetters(lettersGuessed);
+    roundComplete();
+
+}
+
+
+
+
+    // for (var j = 0; j < emptyMovie.length; j++) {
+    //     if (userGuess === emptyMovie)
+    // }
+
+
+// function hasWhiteSpace(s) { possibly will remove space underscore in answer array
+//     return /\s/g.test(s);
+//   }
 // my_string = my_string.replace(/,/g,""); regular expression 
 
 // }       remainingLetters = splitLetters.length //for loop defines letters remaining 
@@ -69,7 +133,8 @@ window.onload = function beginGame() { //start the game
         //             document.getElementById("guesses").innerHTML = 10 - guesses;//subtract used guesses??
         //         }
 
-        //         if (guesses < 10) {
+        //         if () function () {
+                        // (guesses < 10)
         //             //if guesses are less than 10 keep guessing
         //             if (guesses === 10) break;
         //         }
