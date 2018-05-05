@@ -114,16 +114,37 @@ function roundComplete() {
     currentSuccesses = blanksSucceses.toString();
     console.log(currentSuccesses);
 
-    if (remainingLetters === 0) {
+    if (remainingLetters == 0) {
+        console.log(emptyMovie + " ....");
+        console.log(emptyMovie === "ghost busters");
         wins++;
-        alert("You Win");
+
+        if (emptyMovie == "ghost busters") {
+            document.getElementById("gamePlay").src = "https://upload.wikimedia.org/wikipedia/en/2/2f/Ghostbusters_%281984%29_theatrical_poster.png";
+        }
+        else if (emptyMovie == "flash dance") {
+            document.getElementById("gamePlay").src = "https://resizing.flixster.com/ilKQ_IlpDyXiMCEOCxkIree7AU4=/206x305/v1.bTsxMTE3NjQ2OTtqOzE3NzY5OzEyMDA7ODAwOzEyMDA";
+        }
+        else if (emptyMovie == "footloose") {
+            document.getElementById("gamePlay").src = "https://resizing.flixster.com/_FB-5Rby1WUHkt-VLreowJYblKk=/206x305/v1.bTsxMTE2ODk0MDtqOzE3NzY5OzEyMDA7ODAwOzEyMDA";
+        }
+        else if (emptyMovie == "the princess bride") {
+            document.getElementById("gamePlay").src = "https://images-na.ssl-images-amazon.com/images/I/815sfDB8mEL._SY445_.jpg";
+        }
+        else if (emptyMovie == "beetlejuice") {
+            document.getElementById("gamePlay").src = "https://images-na.ssl-images-amazon.com/images/I/91DswgdbVrL._RI_.jpg";
+        }
         document.getElementById("wins").innerHTML = wins;
+        alert("You Win");
         beginGame();
     }
+
     else if (guesses <= 0) {
         alert("You Lost!");
         beginGame();
     }
+
+
 }
 
 window.onload = function startGame() {
@@ -137,12 +158,3 @@ document.onkeyup = function (event) {
     roundComplete();
 
 }
-
-
-
-
-// The Princess Bride clip https://www.youtube.com/watch?v=O6qpa-mRLnI
-// Beetlejuice clip https://www.youtube.com/watch?v=QvT1wym97qo
-// footloose clip https://www.youtube.com/watch?v=j8XGmZ8HDIU
-// ghost busters clip https://www.youtube.com/watch?v=7_pR6mUYtOo
-// flashdance clip https://www.youtube.com/watch?v=6Vx4J_NtNPk
