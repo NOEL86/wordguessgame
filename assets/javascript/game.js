@@ -19,7 +19,7 @@
 
 
 // Global Variables
-var words = ["beetlejuice", "the princess bride", "flash dance", "ghost busters", "footloose"];
+var words = ["beetlejuice", "the princess bride", "flash dance", "ghost busters", "footloose", "top gun"];
 var wins = 0;
 var guesses = 10;
 var emptyMovie = " ";
@@ -28,6 +28,8 @@ var splitLetters = [];
 var display = [splitLetters];
 var numBlanks = 0;
 var lettersGuessed = [];
+// var remainingLetters = words.length;
+var remainingLetters = 0;
 
 // var remainingLetters = ;
 
@@ -38,25 +40,41 @@ function beginGame() { //start the game
     guesses = 10;
     lettersGuessed = [];
     blanksSucceses = [];
+    remainingLetters = 0;
 
     emptyMovie = words[Math.floor(Math.random() * words.length)]; //pick a random word from the array
     console.log(emptyMovie)
     splitLetters = emptyMovie.split(''); //creates the dashes in the html so the player knows how may letters they are guessing
-    console.log(splitLetters)
-    console.log("-------")
+    // remainingLetters = splitLetters.length;
+    // console.log(splitLetters)
+    console.log("After for loop: " + remainingLetters)
 
-    console.log(blanksSucceses)
+
 
     for (var i = 0; i < splitLetters.length; i++) {
-        blanksSucceses[i] = "_ "; //for loop to determine dashes for letter placeholders
-        console.log(i);
+        if (splitLetters[i] != " ") {
+            blanksSucceses[i] = "_"; //for loop to determine dashes for letter placeholders
+        } else {
+            blanksSucceses[i] = "-";
+        }
     }
+    console.log("1Split Letters:" + splitLetters)
+
+    for (let i = 0; i < splitLetters.length; i++) {
+        if (splitLetters[i].indexOf(' ') >= 0) {
+            console.log("its blank!")
+        } else {
+            remainingLetters++;
+        }
+
+    };
+    console.log("2Split Letters" + splitLetters)
+    console.log("After for loop: " + remainingLetters)
+
     document.getElementById("emptyMovie").innerHTML = blanksSucceses.join(" ");
     document.getElementById("wins").innerHTML = wins; //wins base #
     document.getElementById("lettersGuessed").innerHTML = lettersGuessed;
     document.getElementById("guesses").innerHTML = guesses; //wins base #
-    console.log(blanksSucceses)
-    console.log("-------")
 }
 
 function checkLetters(letter) { //for loop function to determine if guessed letter is in the word
@@ -64,12 +82,19 @@ function checkLetters(letter) { //for loop function to determine if guessed lett
 
     for (var i = 0; i < emptyMovie.length; i++) { // check words array for correct word and replace empty array with correct letter
         if (emptyMovie[i] === letter) {
-            isLetterInWord = true;
-            blanksSucceses[i] = letter;
-            console.log(isLetterInWord);
+            if (emptyMovie != " ") {
+                isLetterInWord = true;
+                blanksSucceses[i] = letter;
+                remainingLetters--;
+                console.log(isLetterInWord);
+                console.log("remainingLetters" + remainingLetters);
+            }
         }
     }
-
+    // for (var i = 0; i < blanksSucceses.length; i++) {
+    //     if (blanksSucceses === " ")
+    //         blanksSucceses.splice(i, 1);
+    // }
     if (isLetterInWord === false) {
         lettersGuessed.push(letter);
         guesses--;
@@ -88,7 +113,8 @@ function roundComplete() {
     console.log("blankSuccesses to String " + blanksSucceses.toString());
     currentSuccesses = blanksSucceses.toString();
     console.log(currentSuccesses);
-    if (emptyMovie.valueOf() == currentSuccesses.valueOf()) {
+
+    if (remainingLetters === 0) {
         wins++;
         alert("You Win");
         document.getElementById("wins").innerHTML = wins;
@@ -111,70 +137,6 @@ document.onkeyup = function (event) {
     roundComplete();
 
 }
-
-
-
-
-    // for (var j = 0; j < emptyMovie.length; j++) {
-    //     if (userGuess === emptyMovie)
-    // }
-
-
-// function hasWhiteSpace(s) { possibly will remove space underscore in answer array
-//     return /\s/g.test(s);
-//   }
-// my_string = my_string.replace(/,/g,""); regular expression 
-
-// }       remainingLetters = splitLetters.length //for loop defines letters remaining 
-// for (var j = 0; j < words.length; j++) {
-        //         if (words[j] === guesses) {
-        //             wordsArray[j] = guesses;
-        //             remainingLetters--; //whatever letter the user guessed goes here
-        //             document.getElementById("guesses").innerHTML = 10 - guesses;//subtract used guesses??
-        //         }
-
-        //         if () function () {
-                        // (guesses < 10)
-        //             //if guesses are less than 10 keep guessing
-        //             if (guesses === 10) break;
-        //         }
-
-        //         alert(wordsArray.join(" ")); //word is guessed alert
-        //         alert("You Guessed It!" + words);
-
-        //         if (beginGame === false) {
-        //             console.log("refused game");
-        //         }
-
-        //     };
-
-        // }
-
-
-
-
-// var playAgain = confirm("Want to play again?"); {
-//     if (true)
-//     else break;
-// }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

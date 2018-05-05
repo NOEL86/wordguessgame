@@ -7,7 +7,7 @@
 #mtitle {font-family: 'Orbitron', sans-serif;
     font-size: 125px;
     color: black;
-    -webkit-text-fill-color: rgb(11, 123, 160);
+    -webkit-text-fill-color: rgb(13, 68, 87);
     -webkit-text-stroke: 3px;
     -webkit-text-stroke-color: black;
     margin-bottom: 0;
@@ -32,7 +32,7 @@
 }
 
 .main {text-align: center;
-    background-color: lightgreen;
+    background-color: rgb(13, 68, 87);
     width: 650px;
     height: 650px;
     margin-left: 350px;
@@ -51,11 +51,18 @@ img {width: 280px;
 
 #top { text-align: center;
     line-height: 1.5;
-    margin: auto;
     padding-right: 25px;
     font-family: 'Finger Paint', cursive;
     color: rgb(243, 46, 145);
+    margin-top: 10px;
 
+}
+
+#word {
+    margin-top: 10px;
+    margin-left: 25px;
+    font-family: 'Finger Paint', cursive;
+    color: rgb(243, 46, 145);
 }
 
 .left {text-align: left;
@@ -67,7 +74,7 @@ img {width: 280px;
     color: rgb(243, 46, 145);
     margin-left: 300px;
     padding-top: 50px;
-    margin-top: 60px;
+    
 }
 
 #guesses, #lettersGuessed, #emptyMovie, #wins {font-family: 'Times New Roman', Times, serif !important;
