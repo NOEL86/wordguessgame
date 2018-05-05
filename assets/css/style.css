@@ -41,8 +41,8 @@
 
 }
 
-img {width: 280px;
-    height: 260px;
+img {width: 260px;
+    height: 280px;
     border: solid 5px black;
     z-index: -1;
     margin-top: 10px;
@@ -73,7 +73,7 @@ img {width: 280px;
     font-family: 'Finger Paint', cursive;
     color: rgb(243, 46, 145);
     margin-left: 300px;
-    padding-top: 80px;
+    padding-top: 50px;
     
 }
 

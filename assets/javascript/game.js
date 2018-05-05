@@ -19,17 +19,17 @@
 
 
 // Global Variables
-var words = ["beetlejuice", "the princess bride", "flash dance", "ghost busters", "footloose", "top gun"];
+var words = ["beetlejuice", "the princess bride", "flash dance", "ghost busters", "footloose"];
 var wins = 0;
 var guesses = 10;
 var emptyMovie = " ";
 var blanksSucceses = [];
 var splitLetters = [];
 var display = [splitLetters];
-var numBlanks = 0;
 var lettersGuessed = [];
 // var remainingLetters = words.length;
 var remainingLetters = 0;
+
 
 // var remainingLetters = ;
 
@@ -45,7 +45,7 @@ function beginGame() { //start the game
     emptyMovie = words[Math.floor(Math.random() * words.length)]; //pick a random word from the array
     console.log(emptyMovie)
     splitLetters = emptyMovie.split(''); //creates the dashes in the html so the player knows how may letters they are guessing
-    // remainingLetters = splitLetters.length;
+    remainingLetters = splitLetters.length;
     // console.log(splitLetters)
     console.log("After for loop: " + remainingLetters)
 
@@ -56,19 +56,11 @@ function beginGame() { //start the game
             blanksSucceses[i] = "_"; //for loop to determine dashes for letter placeholders
         } else {
             blanksSucceses[i] = "-";
+            remainingLetters--;
         }
     }
     console.log("1Split Letters:" + splitLetters)
 
-    for (let i = 0; i < splitLetters.length; i++) {
-        if (splitLetters[i].indexOf(' ') >= 0) {
-            console.log("its blank!")
-        } else {
-            remainingLetters++;
-        }
-
-    };
-    console.log("2Split Letters" + splitLetters)
     console.log("After for loop: " + remainingLetters)
 
     document.getElementById("emptyMovie").innerHTML = blanksSucceses.join(" ");
@@ -89,12 +81,16 @@ function checkLetters(letter) { //for loop function to determine if guessed lett
                 console.log(isLetterInWord);
                 console.log("remainingLetters" + remainingLetters);
             }
+            if (isLetterInWord = true) {
+                letter === false;
+            }
         }
     }
     // for (var i = 0; i < blanksSucceses.length; i++) {
     //     if (blanksSucceses === " ")
     //         blanksSucceses.splice(i, 1);
     // }
+
     if (isLetterInWord === false) {
         lettersGuessed.push(letter);
         guesses--;
@@ -115,8 +111,8 @@ function roundComplete() {
     console.log(currentSuccesses);
 
     if (remainingLetters == 0) {
-        console.log(emptyMovie + " ....");
-        console.log(emptyMovie === "ghost busters");
+
+
         wins++;
 
         if (emptyMovie == "ghost busters") {
@@ -134,6 +130,7 @@ function roundComplete() {
         else if (emptyMovie == "beetlejuice") {
             document.getElementById("gamePlay").src = "https://images-na.ssl-images-amazon.com/images/I/91DswgdbVrL._RI_.jpg";
         }
+
         document.getElementById("wins").innerHTML = wins;
         alert("You Win");
         beginGame();
@@ -156,5 +153,4 @@ document.onkeyup = function (event) {
     var lettersGuessed = String.fromCharCode(event.keyCode).toLowerCase();
     checkLetters(lettersGuessed);
     roundComplete();
-
 }
